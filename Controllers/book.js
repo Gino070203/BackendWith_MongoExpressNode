@@ -58,4 +58,25 @@ export class booksController{
 
     }
 
+    static async updateBook(request,response){
+
+
+        const {titulo,autor,anioPublicacion,adquirido} = request.body
+
+        try {
+
+            const {idBook} = request.params
+
+            const data = await book.updateBook(idBook,{titulo,autor,anioPublicacion,adquirido})
+
+            response.status(200).json(data)
+            
+        } catch (error) {
+
+            response.status(200).send(error)
+            
+        }
+
+    }
+
 }
