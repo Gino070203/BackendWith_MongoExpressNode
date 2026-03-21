@@ -12,7 +12,7 @@ export class usersController{
             const usuarioExiste = await userModel.getOne({email})
 
             if(usuarioExiste){
-                response.status(400).json({error : "el usuario ya existe"})    
+               return response.status(400).json({error : "el usuario ya existe"})    
             }
 
             const claveEncriptada = await bcrypt.hash(clave,10)
@@ -26,6 +26,27 @@ export class usersController{
             response.status(500).send(error)
             
         }
+
+    }
+
+    static async login(request,response){
+
+
+        const {email,clave} = request.body
+
+        const usuarioExiste = await userModel.getOne({email})
+
+        if(!usuarioExiste){
+            return response.status(400).json({error : "el usuario no existe"})    
+        }
+
+        const claveValida = await bcrypt.compare(clave,usuarioExiste.clave)
+
+        if(!claveValida){
+            return response.status(400).json({error : "clave no valida"})    
+        }
+
+        return response.status(200).json({msg : "usuario existe"})
 
     }
 
