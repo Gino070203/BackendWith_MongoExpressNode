@@ -12,4 +12,8 @@ export class book{
     }
 
 
+    static async createBook(book){
+        return await libros.create(book)
+    }
+
 }
