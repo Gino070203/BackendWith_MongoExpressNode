@@ -39,4 +39,23 @@ export class booksController{
 
     }
 
+    static async createBook(request,response){
+
+        try {
+            
+            const {titulo,autor,anioPublicacion} = request.body
+
+            const data = await book.createBook({titulo,autor,anioPublicacion})
+
+            response.status(201).json(data)
+
+        } catch (error) {
+            
+            response.status(500).send(error)
+
+        }
+
+
+    }
+
 }
