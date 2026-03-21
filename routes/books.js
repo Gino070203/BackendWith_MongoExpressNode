@@ -8,6 +8,8 @@ bookRouter.get("/",booksController.getAll)
 bookRouter.get("/:idBook",booksController.getOne)
 bookRouter.post("/",booksController.createBook)
 bookRouter.put("/:idBook",booksController.updateBook)
+bookRouter.delete("/:idBook",booksController.deleteBook)
+
 
 
 
