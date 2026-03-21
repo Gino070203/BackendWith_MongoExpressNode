@@ -20,4 +20,8 @@ export class book{
         return await libros.findOneAndUpdate({_id : new mongoose.Types.ObjectId(id)},book)
     }
 
+    static async deleteBook(id){
+        return await libros.findOneAndDelete({_id: new mongoose.Types.ObjectId(id)})
+    }   
+
 }
