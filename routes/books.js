@@ -6,6 +6,7 @@ export const bookRouter = Router()
 
 bookRouter.get("/",booksController.getAll)
 bookRouter.get("/:idBook",booksController.getOne)
+bookRouter.post("/",booksController.createBook)
 
 
 
