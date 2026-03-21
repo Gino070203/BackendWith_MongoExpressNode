@@ -16,4 +16,8 @@ export class book{
         return await libros.create(book)
     }
 
+    static async updateBook(id,book){
+        return await libros.findOneAndUpdate({_id : new mongoose.Types.ObjectId(id)},book)
+    }
+
 }
