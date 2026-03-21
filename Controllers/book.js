@@ -79,4 +79,22 @@ export class booksController{
 
     }
 
+    static async deleteBook(request,response){
+
+        try {
+            
+            const {idBook} = request.params
+
+            const data = await book.deleteBook(idBook)
+
+            response.status(200).json(data)
+
+        } catch (error) {
+
+            response.status(500).send(error)
+            
+        }
+        
+    }
+
 }
