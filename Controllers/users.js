@@ -1,5 +1,7 @@
+import { generarToken } from "../Helpers/autenticacion.js"
 import {userModel} from "../Models/user.js"
 import bcrypt from "bcrypt"
+
 
 export class usersController{
 
@@ -46,7 +48,9 @@ export class usersController{
             return response.status(400).json({error : "clave no valida"})    
         }
 
-        return response.status(200).json({msg : "usuario existe"})
+        const token = generarToken(email)
+
+        return response.status(200).json({msg : "usuario existe", "token" : token})
 
     }
 
