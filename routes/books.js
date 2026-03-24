@@ -1,14 +1,15 @@
 
 import { response, Router, request } from "express";
 import {booksController} from "../Controllers/book.js"
+import { verificarToken } from "../Helpers/autenticacion.js";
 
 export const bookRouter = Router()
 
 bookRouter.get("/",booksController.getAll)
 bookRouter.get("/:idBook",booksController.getOne)
 bookRouter.post("/",booksController.createBook)
-bookRouter.put("/:idBook",booksController.updateBook)
-bookRouter.delete("/:idBook",booksController.deleteBook)
+bookRouter.put("/:idBook",verificarToken,booksController.updateBook)
+bookRouter.delete("/:idBook",verificarToken,booksController.deleteBook)
 
 
 
